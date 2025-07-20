@@ -1,5 +1,8 @@
 ﻿using EventFlow.Application.DTOs.Events;
+using EventFlow.Application.DTOs.Users;
 using EventFlow.Domain.Entities;
+using System.Collections.Generic;
+using System.Data;
 
 namespace EventFlow.Application.Mappers;
 
@@ -18,6 +21,19 @@ public static class MappingConfig
             @event.MaxParticipants,
             @event.OrganizerId,
             @event.Organizer?.UserName ?? "Unknown Organizer"
+        );
+    }
+
+    public static UserDto ToUserDto(this User user)
+    {
+        return new UserDto(
+            user.Id,
+            user.UserName,
+            user.Email,
+            user.CreatedDate,
+            user.UpdatedDate,
+            user.Roles.Select(r => r.Name).ToList(),
+            user.OrganizedEvents.Select(e => e.ToEventDto()).ToList()
         );
     }
 }

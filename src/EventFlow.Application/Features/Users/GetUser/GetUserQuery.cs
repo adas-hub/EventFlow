@@ -1,5 +1,7 @@
-﻿namespace EventFlow.Application.Features.Users.GetUser;
+﻿using EventFlow.Application.DTOs.Users;
+using EventFlow.Domain.Common;
+using MediatR;
 
-internal class GetUserQuery
-{
-}
+namespace EventFlow.Application.Features.Users.GetUser;
+
+public record GetUserQuery(Guid UserId) : IRequest<Result<UserDto>>;
