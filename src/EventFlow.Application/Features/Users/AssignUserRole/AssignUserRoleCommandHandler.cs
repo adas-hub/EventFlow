@@ -24,7 +24,7 @@ public class AssignUserRoleCommandHandler : IRequestHandler<AssignUserRoleComman
             return Error.Failure("User.NotFound", $"User with ID '{request.UserId}' was not found.");
         }
 
-        var role = await _roleRepository.GetRoleByNameAsync(request.RoleName);
+        var role = await _roleRepository.GetRoleByNameAsync(request.RoleName, cancellationToken);
         if (role == null)
         {
             return Error.Failure("Role.NotFound", $"Role '{request.RoleName}' not found.");
@@ -32,7 +32,7 @@ public class AssignUserRoleCommandHandler : IRequestHandler<AssignUserRoleComman
 
         if (user.Roles.Any(r => r.Name == request.RoleName))
         {
-            return Error.Failure("User.RoleAlreadyAssigned.Conflic", $"User already has the role '{request.RoleName}'.");
+            return Error.Failure("User.Conflict.RoleAlreadyAssigned", $"User already has the role '{request.RoleName}'.");
         }
 
         user.Roles.Add(role);

@@ -4,6 +4,6 @@ public enum RegistrationStatus
 {
     Pending,
     Confirmed,
-    Cancelled,
-    Waitlisted
+    Rejected,
+    Cancelled
 }

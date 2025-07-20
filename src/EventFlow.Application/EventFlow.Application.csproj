@@ -17,13 +17,4 @@
     <ProjectReference Include="..\EventFlow.Domain\EventFlow.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Events\CreateEvent\" />
-    <Folder Include="Features\Events\CancelEvent\" />
-    <Folder Include="Features\Events\DeleteEvent\" />
-    <Folder Include="Features\Events\PublishEvent\" />
-    <Folder Include="Features\Registrations\" />
-    <Folder Include="Mappers\" />
-  </ItemGroup>
-
 </Project>

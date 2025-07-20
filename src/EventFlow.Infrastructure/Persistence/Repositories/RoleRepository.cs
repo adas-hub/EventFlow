@@ -10,8 +10,8 @@ public class RoleRepository : Repository<Role>, IRoleRepository
     {
     }
 
-    public async Task<Role?> GetRoleByNameAsync(string roleName)
+    public async Task<Role?> GetRoleByNameAsync(string roleName, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.FirstOrDefaultAsync(r => r.Name == roleName);
+        return await _dbSet.FirstOrDefaultAsync(r => r.Name == roleName, cancellationToken);
     }
 }

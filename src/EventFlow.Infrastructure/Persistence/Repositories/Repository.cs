@@ -20,11 +20,6 @@ public abstract class Repository<TEntity> : IRepository<TEntity>  where TEntity 
         return await _dbSet.FindAsync(new object[] { id }, cancellationToken);
     }
 
-    public async Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
-    {
-        return await _dbSet.ToListAsync(cancellationToken);
-    }
-
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await _dbSet.AddAsync(entity, cancellationToken);

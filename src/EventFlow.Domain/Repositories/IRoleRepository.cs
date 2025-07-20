@@ -5,5 +5,5 @@ namespace EventFlow.Domain.Repositories;
 
 public interface IRoleRepository : IRepository<Role>
 {
-    Task<Role?> GetRoleByNameAsync(string roleName);
+    Task<Role?> GetRoleByNameAsync(string roleName, CancellationToken cancellationToken = default);
 }
