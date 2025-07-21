@@ -1,5 +1,6 @@
-﻿using EventFlow.Application.Features.Events.GetPublishedEvents;
 using EventFlow.Application.Features.Users.AssignUserRole;
+using EventFlow.Application.Features.Users.GetUser;
+using EventFlow.Application.Features.Events.GetPublishedEvents;
 using EventFlow.Application.Features.Users.RemoveUserRole;
 using EventFlow.Domain.Common;
 using EventFlow.Domain.Common.Filters;
@@ -37,4 +38,14 @@ public class UsersController : BaseController
         var result = await Sender.Send(command);
         return HandleResult(result);
     }
+
+    [HttpGet("{userId:guid}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetUser(Guid userId)
+    {
+        var query = new GetUserQuery(userId);
+        var result = await Sender.Send(query);
+        return HandleResult(result);
+    }
+
 }

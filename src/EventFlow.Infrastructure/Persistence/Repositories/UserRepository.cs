@@ -22,6 +22,12 @@ public class UserRepository : Repository<User>, IUserRepository
         return await _dbSet.Include(u => u.Roles).FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
     }
 
-
+    public async Task<User?> GetByIdWithRolesAndEventsAsync(Guid userId, CancellationToken cancellationToken = default)
+    {
+        return await _dbSet
+                     .Include(u => u.Roles)
+                     .Include(u => u.OrganizedEvents)
+                     .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+    }
 
 }
