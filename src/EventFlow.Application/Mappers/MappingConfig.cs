@@ -1,7 +1,6 @@
 ﻿using EventFlow.Application.DTOs.Events;
 using EventFlow.Application.DTOs.Users;
 using EventFlow.Domain.Entities;
-using System.Collections.Generic;
 using System.Data;
 
 namespace EventFlow.Application.Mappers;

@@ -1,12 +1,9 @@
-﻿using EventFlow.Application.Features.Events.GetEventDetails;
-using EventFlow.Application.Features.Users.AssignUserRole;
+﻿using EventFlow.Application.Features.Users.AssignUserRole;
 using EventFlow.Application.Features.Users.GetUser;
 using EventFlow.Application.Features.Users.RemoveUserRole;
 using EventFlow.Domain.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace EventFlow.Api.Controllers;
 
@@ -41,7 +38,7 @@ public class UsersController : BaseController
     }
 
     [HttpGet("{userId:guid}")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetUser(Guid userId)
     {
         var query = new GetUserQuery(userId);
