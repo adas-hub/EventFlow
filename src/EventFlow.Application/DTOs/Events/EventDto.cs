@@ -10,5 +10,6 @@ public record EventDto(
     string Status,
     int MaxParticipants,
     Guid OrganizerId,
-    string OrganizerUserName
+    string OrganizerUserName,
+    int RegisteredParticipants
 );

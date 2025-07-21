@@ -1,6 +1,8 @@
-﻿using EventFlow.Application.Features.Users.AssignUserRole;
+﻿using EventFlow.Application.Features.Events.GetPublishedEvents;
+using EventFlow.Application.Features.Users.AssignUserRole;
 using EventFlow.Application.Features.Users.RemoveUserRole;
 using EventFlow.Domain.Common;
+using EventFlow.Domain.Common.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

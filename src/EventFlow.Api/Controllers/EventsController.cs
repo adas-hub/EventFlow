@@ -2,8 +2,12 @@
 using EventFlow.Application.Features.Events.CompleteEvent;
 using EventFlow.Application.Features.Events.CreateEvent;
 using EventFlow.Application.Features.Events.GetEventDetails;
+using EventFlow.Application.Features.Events.GetEvents;
 using EventFlow.Application.Features.Events.GetMyOrganizedEvents;
+using EventFlow.Application.Features.Events.GetPublishedEvents;
 using EventFlow.Application.Features.Events.PublishEvent;
+using EventFlow.Domain.Common;
+using EventFlow.Domain.Common.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,4 +82,29 @@ public class EventsController : BaseController
 
         return HandleResult(result);
     }
+    [HttpGet("published")]
+    public async Task<IActionResult> GetPublishedEvents(
+        [FromQuery] Paging paging,
+        [FromQuery] EventFilter filter,
+        [FromQuery] Sorting sorting)
+    {
+        var query = new GetPublishedEventsQuery(paging, filter, sorting);
+        var result = await Sender.Send(query);
+
+        return HandleResult(result);
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetEvents(
+        [FromQuery] Paging paging,
+        [FromQuery] EventFilter filter,
+        [FromQuery] Sorting sorting)
+    {
+        var query = new GetEventsQuery(paging, filter, sorting);
+        var result = await Sender.Send(query);
+
+        return HandleResult(result);
+    }
+
 }
